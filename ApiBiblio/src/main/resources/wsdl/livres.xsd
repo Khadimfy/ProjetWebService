@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.bibliotheque.com/wsdl"
+           xmlns:tns="http://www.bibliotheque.com/wsdl"
+           elementFormDefault="qualified">
+
+    <!-- ============================== -->
+    <!-- === Type de base pour Livre === -->
+    <!-- ============================== -->
+    <xs:complexType name="LivreType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="titre" type="xs:string"/>
+            <xs:element name="auteur" type="xs:string"/>
+            <xs:element name="disponible" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ============================== -->
+    <!-- === Gestion des livres ====== -->
+    <!-- ============================== -->
+
+    <xs:element name="AjouterLivreRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="titre" type="xs:string"/>
+                <xs:element name="auteur" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="AjouterLivreResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="livre" type="tns:LivreType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SupprimerLivreRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SupprimerLivreResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ModifierLivreRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="titre" type="xs:string"/>
+                <xs:element name="auteur" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ModifierLivreResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="livre" type="tns:LivreType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="PreterLivreRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="PreterLivreResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RetournerLivreRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RetournerLivreResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ============================== -->
+    <!-- === Gestion des réservations === -->
+    <!-- ============================== -->
+
+    
+    <xs:element name="AjouterReservationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nomUtilisateur" type="xs:string"/>
+                <xs:element name="titreLivre" type="xs:string"/>
+                <xs:element name="dateReservation" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Définition de l'élément AjouterReservationResponse -->
+    <xs:element name="AjouterReservationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="success" type="xs:boolean"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ============================== -->
+    <!-- === Gestion des utilisateurs === -->
+    <!-- ============================== -->
+
+    <xs:element name="AjouterUtilisateurRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nom" type="xs:string"/>
+                 <xs:element name="prenom" type="xs:string"/>
+                  <xs:element name="email" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="AjouterUtilisateurResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="nom" type="xs:string"/>
+                <xs:element name="prenom" type="xs:string"/>
+                  <xs:element name="email" type="xs:string"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
