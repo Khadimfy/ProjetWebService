@@ -1,6 +1,10 @@
 package com.bibliotheque.ApiBiblio.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.time.LocalDate;
 
 @Entity
@@ -10,40 +14,22 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Relation avec Livre
-    @ManyToOne
-    @JoinColumn(name = "livre_id", nullable = false)
-    private Livre livre;
-
-    // Identifiant de l'utilisateur
-    @Column(nullable = false)
-    private Long utilisateurId;
-
-    @Column(nullable = false)
-    private LocalDate dateDebut;
-
-    @Column(nullable = false)
-    private LocalDate dateFin;
-
-    // Nouveaux champs
+    private String nomUtilisateur;
+    private String titreLivre;
     private LocalDate dateReservation;
 
-    private boolean emprunte;
-
+    // --- Constructeurs ---
     public Reservation() {
     }
 
-    public Reservation(Livre livre, Long utilisateurId, LocalDate dateDebut, LocalDate dateFin) {
-        this.livre = livre;
-        this.utilisateurId = utilisateurId;
-        this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
-        this.dateReservation = LocalDate.now();
-        this.emprunte = false;
+    public Reservation(String nomUtilisateur, String titreLivre, LocalDate dateReservation) {
+        this.nomUtilisateur = nomUtilisateur;
+        this.titreLivre = titreLivre;
+        this.dateReservation = dateReservation;
     }
 
     // --- Getters & Setters ---
-    
+
     public Long getId() {
         return id;
     }
@@ -52,36 +38,20 @@ public class Reservation {
         this.id = id;
     }
 
-    public Livre getLivre() {
-        return livre;
+    public String getNomUtilisateur() {
+        return nomUtilisateur;
     }
 
-    public void setLivre(Livre livre) {
-        this.livre = livre;
+    public void setNomUtilisateur(String nomUtilisateur) {
+        this.nomUtilisateur = nomUtilisateur;
     }
 
-    public Long getUtilisateurId() {
-        return utilisateurId;
+    public String getTitreLivre() {
+        return titreLivre;
     }
 
-    public void setUtilisateurId(Long utilisateurId) {
-        this.utilisateurId = utilisateurId;
-    }
-
-    public LocalDate getDateDebut() {
-        return dateDebut;
-    }
-
-    public void setDateDebut(LocalDate dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
-    public LocalDate getDateFin() {
-        return dateFin;
-    }
-
-    public void setDateFin(LocalDate dateFin) {
-        this.dateFin = dateFin;
+    public void setTitreLivre(String titreLivre) {
+        this.titreLivre = titreLivre;
     }
 
     public LocalDate getDateReservation() {
@@ -90,13 +60,5 @@ public class Reservation {
 
     public void setDateReservation(LocalDate dateReservation) {
         this.dateReservation = dateReservation;
-    }
-
-    public boolean isEmprunte() {
-        return emprunte;
-    }
-
-    public void setEmprunte(boolean emprunte) {
-        this.emprunte = emprunte;
     }
 }
